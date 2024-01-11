@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top{
+    background-color: aqua;
+    padding:2%;
+}
+
+h1{
+    color:crimson;
+    text-align: center;
+}
