@@ -1,0 +1,304 @@
+things to know in react :
+1 how to create react project 
+2 what are props in react 
+3 file/folder structure 
+4 what is jsx 
+5 what is component in react what are import and export 
+6 styling component
+7 how to install bootstrap in react 
+8 props and props types 
+9 what is ternary operator 
+10 what are react hooks 
+11 what is useState hook
+12 what is useEffect Hook 
+   how to call an API with the help of UseEffectHook 
+13 react-router-dom-v6 (how to use Routing : https://dev.to/adidoshi/react-router-dom-v6-51j2 ) ; 
+   Basic Routing
+   useNavigate()
+   nested route
+   index route 
+   Dyanmic Routing (doubt)
+
+
+1) steps to create react app 
+npm create vite@latest
+y 
+select framework 
+select language
+
+cd app-name 
+npm install 
+npm run dev 
+
+2) install bootstrap 
+npm i bootstrap@latest
+import "bootstrap/dist/css/bootstrap.min.css" ;  
+
+3) props as an elements and props as a children  
+
+4) map function in react 
+
+{
+  <name>.map( (element) => {
+  return (
+
+    ) 
+}) 
+
+}
+
+5) react hooks (the most imp topics ) 
+
+when we want state management and lifecycle method then we use hooks , they are used in react functional components they are replacing the class based components . 
+
+5.1 ) useStateHook => kuch click kiya kuch change hua to change display karvane ka kaam useState ka h 
+
+const[ selectValue , setSelectedValue ] = React.useState(inital Value) ; 
+ 
+what is a state ?
+ek esi cheez jo current information store karke rakh rahhi h par vo change ho skti h in future . epresent the rendered values, i.e. what's currently on the screen. 
+the State of a component is an object that holds some information that may change over the lifetime of the component.
+
+use of state hook ? 
+jab hum current state p hote h aur humko values update karne ki hoti h and updated values show karneki hoti h to uske liye hum usestate ka use kare h . taaki new update value or updated state how ho . basically when we want to update the state then we use useState.
+
+ex: 
+import React, { useState }from 'react'
+
+const Theform
+ = () => {
+
+  const [user, setUser] = useState('')
+  const [email, setEmail] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(user, email)
+
+  }
+  return (
+    <div>
+        <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="enter your name"  onChange={(e) 
+            => {setUser(e.target.value)}} value ={user} required />
+                
+            <input type="email" placeholder="enter your email" onChange={(e)  
+            => {setEmail(e.target.value)}} value={email} required />
+            <button type="submit">Submit</button>
+            
+        </form>
+
+    </div>
+  )
+}
+
+export default Theform;
+
+what is useEffect Hook ?side effect m use hota h component ke render hone m ya phir re render hone m ya phir dependency change hoti h tab call hotaa h 
+
+meaning of side effect => React side-effect it helps establish communication with external resources, such as local storage and supports utilizing APIs.
+
+The useEffect hook in React is used to handle the side effects in React such as fetching data, and updating DOM. This hook runs on every render but there is also a way of using a dependency array using which we can control the effect of rendering.
+
+How does useEffect () works?
+What does useEffect do? By using this Hook, you tell React that your component needs to do something after render. React will remember the function you passed (we'll refer to it as our “effect”), and call it later after performing the DOM updates.
+
+syntax : 
+jab bhi render hoga aur re render hoga tab call hogaa:
+React.useEffect( () => {}, ) 
+
+ek hi bar jab render hoga tab hi call hoga 
+
+React.useEffect( () =>{ 
+},[] ) ;
+
+
+jab koi state change ho tab call hoga 
+
+// only when state change then call 
+  React.useEffect(() => {
+    console.log("use Effect");
+  }, [state name]);
+
+
+jab merko external cheeze se kaam hota h jaise api call karvana local storage ke saath deal karna tab mera use Effect kaam m atta h . aur use Effect ko tab call karvane h vo main baat hoti h agar useEffect har render aur re render m use hone laaga to app p load badh jaayegaa
+
+
+how to call an api with the help of Use Effect Hook ?
+
+React.useEffect( () =>{
+
+async function function_name () {
+
+const get = await fetch("url") ;
+const ans = await get.json() ; 
+
+any_set_[ans] ;
+ 
+}
+
+function_name() ;
+},[any_state]) ;
+
+what is react-rotuer-dom-v6? jab humko ek page se dusre page jaane ho without refreshing the page tp hum react-router-dom ka use karte h 
+
+React Router Dom is used to build single-page applications i.e. applications that have many pages or components but the page is never refreshed instead the content is dynamically fetched based on the URL. This process is called Routing and it is made possible with the help of React Router Dom. and for that we are using version 6 .
+
+
+Basic Routing
+
+how to use react-router-dom-v6 => npm add react-router-dom 
+
+in app.js 
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+<Router>
+<NavBar>
+<Routes>
+<Route path = {"/" } element ={ <Home/>} />
+<Route path={"/About"} element={<About />} />
+<Route path={"/Contact"} element={<Contact />} />
+<Route path={"*"} element={<Error />} />
+</Routes>
+</Router>
+
+In NavBar 
+import { Link } from "react-router-dom";
+
+<Link to={"/"} > <Home/> </Link>
+<Link to={"/about"} > <about/> </Link>
+<Link to={"/contact"} > <contact/> </Link>
+
+
+
+React-Router-Dom-v6-Hooks
+
+use of navlink => Link provides a basic link to any URL, while NavLink offers additional ca
+
+In NavBar 
+<NavLink to={"/"}><h1>Home</h1></NavLink>
+<NavLink to={"/About"}><h1>About</h1></NavLink>
+<NavLink to={"/Contact"}><h1>Contact</h1></NavLink>
+
+use of useNavigate => allows programmatic routing inside a React application. The method returns a function that can be invoked with a URI Universal Resource Identifier to redirect the client to the respective page.
+
+in Home page and you want to go in contact page then :
+in Home Page : 
+const navigate = useNavigate();
+<button onClick={()=> navigate("contact")}>Go to Contact Page</button>
+
+in contact page : => when you want to go back to that page useNavigate(-1) used as back button 
+const navigate = useNavigate();
+<button onClick={()=> navigate(-1)}>Go back Page</button>
+
+nested route
+suppose in contact there are 2 things favcontact and less usedcontact ans you want to navigate in them : 
+
+so in contact : 
+
+<div>
+<Link to={"favContact'} > <h1> favourite Contact </h1> </Link>
+<Link to={"LessUseContact} > <h1> Less Use Contact </h1> </Link>
+</div>
+
+<div>
+<Outlet> => indicate where a child route element should be rendered. 
+</div>
+
+
+so in app.js :
+
+<Router>
+<Routes>
+<Route path={"/"} element={<Home/>} />
+<Route path={"/Contact"} element={<Contact/>} >
+<Route path={"FavContact"} element={<FavContact/>} />
+<Route path={"LessUsed"} element={<LessUsedContact/>} />
+</Route>
+</Routes>
+</Router>
+
+
+index route => when we are at the contact but we want to display favContact too than at that time we use index route .
+
+<Router>
+<Routes>
+<Route path={"/"} element={<Home/>} />
+<Route path={"/about"} element={<About/>} />
+<Route path={"/Contact"} element={<Contact/>}>
+<Route index element={<FavContact/>} />
+<Route path={"FavContact"} element={<FavContact/>} />
+<Route path={"LessUsedContact"} element={<LessUsedContact />} />
+</Route>
+</Routes>
+</Router>
+ 
+
+Dyanmic Routing
+
+in app.jsx
+
+  <Router>
+        <NavBar />
+        <Routes>
+          <Route path={"/"} element={<Home />} />
+          <Route path={"/Users"} element={<Users />} >
+          <Route path={":userId"} element={<UserDetails />} />
+          </Route>
+          <Route path={"*"} element={<Error />} />
+        </Routes>
+      </Router>
+
+in user.jsx
+ const users = [
+    {
+      id: "1",
+      name: "user-name-1",
+    },
+
+    {
+      id: "2",
+      name: "user-name-2",
+    },
+
+    {
+      id: "3",
+      name: "user-name-3",
+    },
+
+    {
+      id: "4",
+      name: "user-name-4",
+    },
+  ];
+  return (
+    <div>
+      {users.map((item, index) => {
+        return (
+          <div key={index}>
+            <Link to={`/users/${item.id}`}>
+              <h5>{item.name}</h5>
+            </Link>
+          </div>
+        );
+      })}
+
+      <Outlet />
+    </div>
+  );
+};
+
+
+in userdetail.jsx
+// this is the one way
+  // const params = useParams() ;
+  // const userId = params.userId
+
+  const { userId} = useParams();
+  return (
+    <div>
+      UserDetails : {userId}
+    </div>
+  );
+
+
