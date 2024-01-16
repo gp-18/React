@@ -1,4 +1,5 @@
 things to know in react :
+
 1 how to create react project 
 2 what are props in react 
 3 file/folder structure 
@@ -18,7 +19,11 @@ things to know in react :
    nested route
    index route 
    Dyanmic Routing (doubt)
-
+14 useRef hook
+15 useReducer hook
+16 react custom hook (left-to-be-done)
+17 useMemo hook(left-to-be-done)
+18 useCallback(left-to-be-done)
 
 1) steps to create react app 
 npm create vite@latest
@@ -301,4 +306,53 @@ in userdetail.jsx
     </div>
   );
 
+what is useRef Hook ?
+3 main use : 
+mutable value ke saath deal karna 
+dom manipulation karna 
+previous state ki value store karvana
+
+usmai hum mutable(jisse hum change kar paayegye) values rakh skte h jo re render cause nhi karega . aur usmai hum esi values rakhegye jo dom manipulation karti ho and dom ke elements ko direct access karti ho . useState hook m values update karne m re render trigger hota tha leekin ismai esa nhi hotaa h
+
+useref ek object return karta h. to usmai main value hoti h current 
+
+useref state ki previous values ko bhi store karvane ke kaam m aataa h .
+
+const [input, setInput] = React.useState("");
+  const counter = React.useRef(0);
+  let prevState = React.useRef(" ");
+  const inputField = React.useRef() ;
+
+  React.useEffect(() => {
+    counter.current = counter.current + 1;
+    prevState.current = input;
+  }, [input]);
+
+  function handle(e) {
+    setInput(e.target.value);
+  }
+
+  const clickHandler = () => {
+    inputField.current.focus();
+  }
+  return (
+    <>
+      <h1>useRef hook</h1>
+      <input ref={inputField} type="text" value={input} onChange={handle} />
+
+      <h4>render cause {counter.current} times</h4>
+
+      <h1>{prevState.current}</h1>
+
+      <button onClick={clickHandler}>click me</button>
+    </>
+  );
+};
+
+what is useReducer Hook 
+complex actions h state ke to usko handle karne ke liye kaam m ataa h 
+this is the almost same as useState hook but jab humko useState ke saath complex task perform karne pad skte h tab hum ye use karte h .
+
+syntax :
+ const [state , disptach] =React.useReducer(reducer,initalState);
 
